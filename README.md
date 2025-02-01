@@ -9,10 +9,10 @@ Bu proje, Kotlin kullanılarak Android Studio ile geliştirilmiş bir To-Do List
 - RecyclerView
 
 ## Özellikler
-Add Task
-Update Task
-Complete Task
-Delete Task
-SQLite Database Support
-Swipe Gesture Support
+- Add Task
+- Update Task
+- Complete Task
+- Delete Task
+- SQLite Database Support
+- Swipe Gesture Support
 
