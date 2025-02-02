@@ -16,7 +16,6 @@ import com.talhakilic.todolistproject.YRDM.DataBaseHelper
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class GorevEkle : BottomSheetDialogFragment() {
-
     companion object {
         const val TAG = "GorevEkle"
 
@@ -28,6 +27,7 @@ class GorevEkle : BottomSheetDialogFragment() {
     private lateinit var mEditText: EditText
     private lateinit var mSaveButton: Button
     private lateinit var myDb: DataBaseHelper
+    private lateinit var mCancelButton: Button
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,6 +41,7 @@ class GorevEkle : BottomSheetDialogFragment() {
 
         mEditText = view.findViewById(R.id.edittext)
         mSaveButton = view.findViewById(R.id.button_save)
+        mCancelButton = view.findViewById(R.id.buttonCancel)
         myDb = DataBaseHelper(requireActivity())
 
         var isUpdate = false
@@ -54,6 +55,10 @@ class GorevEkle : BottomSheetDialogFragment() {
                 mSaveButton.isEnabled = false
             }
         }
+        mCancelButton.setOnClickListener {
+            dismiss()
+        }
+
 
         mEditText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -88,4 +93,10 @@ class GorevEkle : BottomSheetDialogFragment() {
             (activity as? OnDialogCloseListener)?.onDialogClose(dialog!!) // Corrected here
         }
     }
+    override fun onCancel(dialog: DialogInterface) {
+        super.onCancel(dialog)
+        dismiss()
+    }
+
+
 }
