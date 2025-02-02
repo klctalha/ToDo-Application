@@ -8,7 +8,7 @@ Bu proje, Kotlin kullanılarak Android Studio ile geliştirilmiş bir To-Do List
 - Swipe Gestures 
 - RecyclerView
 
-## Özellikler
+## Features
 - Add Task
 - Update Task
 - Complete Task
