@@ -1,6 +1,7 @@
 package com.talhakilic.todolistproject.Adapter
 
 import android.content.Context
+import android.graphics.Paint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -30,13 +31,18 @@ class ToDoAdapter(private val myDB: DataBaseHelper, private val activity: MainAc
         holder.binding.mcheckbox.text = item.task
         holder.binding.mcheckbox.isChecked = toBoolean(item.status)
 
+        setStrikeThrough(holder.binding.mcheckbox, item.status == 1)
+
         holder.binding.mcheckbox.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 myDB.updateStatus(item.id, 1)
+                setStrikeThrough(holder.binding.mcheckbox, true)
             } else {
                 myDB.updateStatus(item.id, 0)
+                setStrikeThrough(holder.binding.mcheckbox, false)
             }
         }
+
     }
 
     private fun toBoolean(num: Int): Boolean {
@@ -73,4 +79,12 @@ class ToDoAdapter(private val myDB: DataBaseHelper, private val activity: MainAc
     }
 
     class MyViewHolder(val binding: TaskLayoutBinding) : RecyclerView.ViewHolder(binding.root)
+
+    private fun setStrikeThrough(view: android.widget.TextView, isStriked: Boolean) {
+        if (isStriked) {
+            view.paintFlags = view.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+        } else {
+            view.paintFlags = view.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
+        }
+    }
 }
